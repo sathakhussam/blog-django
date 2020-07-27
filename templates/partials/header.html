@@ -1,0 +1,55 @@
+{% load static %}
+<!-- site header
+================================================== -->
+<header class="s-header">
+
+    <div class="header__top">
+        <div class="header__logo">
+            <a style="color: #ffffff; font-family: Helvetica; font-weight: 700;" class="site-logo h3" href="{% url 'home' %}">
+                BBT
+            </a>
+        </div>
+
+        <div class="header__search">
+
+            <form role="search" method="get" class="header__search-form" action="#">
+                <label>
+                    <span class="hide-content">Search for:</span>
+                    <input type="search" class="header__search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
+                </label>
+                <input type="submit" class="header__search-submit" value="Search">
+            </form>
+
+            <a href="#0" title="Close Search" class="header__search-close">Close</a>
+
+        </div>  <!-- end header__search -->
+
+        <!-- toggles -->
+        <a href="#0" class="header__search-trigger"></a>
+        <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
+
+    </div> <!-- end header__top -->
+
+    <nav class="header__nav-wrap">
+
+        <ul class="header__nav">
+            <li {% if request.resolver_match.url_name == 'home' %}class="current"{% endif %}><a href="{% url 'home' %}" title="">Home</a></li>
+            <!-- <li><a href="styles.html" title="">Styles</a></li> -->
+            <li {% if request.resolver_match.url_name == 'about' %}class="current"{% endif %}><a href="{% url 'about' %}" title="">About</a></li>
+            <li {% if request.resolver_match.url_name == 'contact' %}class="current"{% endif %}><a href="{% url 'contact' %}" title="">Contact</a></li>
+            <li {% if 'blog' in request.get_full_path %}class="current"{% endif %}><a href='#' title="">Blog</a></li>
+        </ul> <!-- end header__nav -->
+
+        <ul class="header__social">
+            <li class="ss-instagram">
+                <a href="https://instagram.com/blessedblissfultimes">
+                    <span class="screen-reader-text">Instagram</span>
+                </a>
+            </li>
+        </ul>
+
+    </nav> <!-- end header__nav-wrap -->
+
+    
+
+</header> <!-- end s-header -->

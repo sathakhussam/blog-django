@@ -1,0 +1,8 @@
+.idea/
+accounts/__pycache__
+accounts/migrations
+blog/__pycache__
+blog/migrations
+pages/__pycache__
+pages/migrations
+media/

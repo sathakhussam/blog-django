@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="s-content content">
+    <main class="row content__page">
+        
+        <div class="column large-full entry format-standard">
+    <h1 class="display-1 add-bottom">
+        Login
+    </h1>
+    <form name="contactForm" id="contactForm" method="post" action="{% url 'login' %}" autocomplete="off">
+        {% csrf_token %}
+        <fieldset>
+            {% if error %}
+            <div class="alert-box alert-box--error hideit">
+                <p>{{ error }}</p>
+                <i class="fa fa-times alert-box__close" aria-hidden="true"></i>
+            </div>
+            {% endif %}
+            <div class="form-field">
+                {{ form.email }}
+            </div>
+            <div class="form-field">
+                {{ form.password }}
+            </div>
+            <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width" value="Login" type="submit">
+
+        </fieldset>
+    </form> <!-- end form -->
+
+    </div>
+    </main>
+</div>
+
+{% endblock %}

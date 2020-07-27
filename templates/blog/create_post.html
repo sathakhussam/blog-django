@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="s-content content">
+    <main class="row content__page">
+        <div class="column large-full entry format-standard">
+            <h1 class="display-1">Create New Post</h1>
+            <form name="contactForm" id="contactForm" method="POST" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                    {% if error %}
+                    <div class="alert-box alert-box--error hideit">
+                        <p>{{ error }}</p>
+                        <i class="fa fa-times alert-box__close" aria-hidden="true"></i>
+                    </div>
+                    {% endif %}
+                    <div class="form-field">
+                        {{ form.title }}
+                    </div>
+        
+                    
+                    
+                    <div class="form-field">
+                        {{ form.description }}
+                    </div>
+                    <div class="form-field">
+                        <p>Image Field :</p>
+                        {{ form.image }}
+                        <hr>
+                    </div>
+                    <p>Below Are Optional</p>
+                    <div class="form-field">
+                        {{ form.quote }}
+                    </div>
+                    <div class="form-field">
+                        {{ form.quote_writer }}
+                    </div>
+        
+                    <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width" value="Create" type="submit">
+                    </form> <!-- end form -->
+        </div>
+    </main>
+</div>
+{% endblock %}

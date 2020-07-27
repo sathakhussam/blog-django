@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+{% if obj %}
+{% if comments %}
+<div class="s-content content">
+    <main class="row content__page">
+        <div class="comments-wrap">
+
+            <div id="comments" class="column large-full entry format-standard large-12">
+
+                <h3 class="h2">Comments</h3>
+
+                <!-- START commentlist -->
+                {% for comment in comments%}
+                <ol class="commentlist">
+
+                    <li class="depth-1 comment">
+
+                        <div class="comment__avatar">
+                            <img class="avatar" src="{% static 'images/avatars/user-01.jpg' %}" alt="" width="50" height="50">
+                        </div>
+
+                        <div class="comment__content">
+
+                            <div class="comment__info">
+                                <div class="comment__author">{{ comment.name }}</div>
+                                <div class="comment__author">{{ comment.email }}</div>
+
+                                <div class="comment__meta">
+                                    <div class="comment__time">{{ comment.date }}</div>
+                                    <div class="comment__reply">
+                                        <a class="comment-reply-link" href="#0">Reply</a>
+                                        <a class="comment-reply-link" href="{% if comment.is_published %}{% url 'disapprovecomment' obj.pk comment.pk %}{% else %}{% url 'approvecomment' obj.pk comment.pk %}{% endif %}">{{ comment.is_published }}</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comment__text">
+                            <p>{{ comment.message }}</p>
+                            </div>
+
+                        </div>
+
+                    </li> <!-- end comment level 1 -->
+                </ol>
+                <!-- END commentlist -->
+
+                {% endfor %}
+                {% else %}
+                
+                <h1 style="text-align: center;">Sorry No Comments Available</h1>
+                {% endif %}
+            </div> <!-- end comments -->
+            {% endif %}
+    </main>
+</div>
+{% endblock %}

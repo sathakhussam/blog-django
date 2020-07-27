@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="s-content content">
+    <main class="row content__page">
+        <div class="column large-full entry format-standard">
+            <h1 class="display-1">Update Post</h1>
+            <form name="contactForm" id="contactForm" method="post" action="" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <fieldset>
+                    {% if error %}
+                    <div class="alert-box alert-box--error hideit">
+                        <p>{{ error }}</p>
+                        <i class="fa fa-times alert-box__close" aria-hidden="true"></i>
+                    </div>
+                    {% endif %}
+                    <div class="form-field">
+                        {{ form.title }}
+                    </div>
+        
+                    <div class="form-field">
+                        {{ form.image }}
+                    </div>
+        
+        
+                    <div class="form-field">
+                        {{ form.description }}
+                    </div>
+                    <p>Below Are Optional</p>
+                    <div class="form-field">
+                        {{ form.quote }}
+                    </div>
+                    <div class="form-field">
+                        {{ form.quote_writer }}
+                    </div>
+        
+                    <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width" value="Create" type="submit">
+        
+                </fieldset>
+            </form> <!-- end form -->
+            {% if obj %}
+            <a href="{% url 'commentspost' obj.pk %}">Comments</a>
+            <a href="{% url 'deletepost' obj.pk %}">Delete Post</a>
+            {% endif %}
+        </div>
+    </main>
+</div>
+{% endblock %}

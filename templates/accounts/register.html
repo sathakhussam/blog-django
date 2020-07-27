@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="s-content content">
+    <main class="row content__page">
+        
+        <div class="column large-full entry format-standard">
+    <h1 class="display-1">
+        Register New User
+    </h1>
+    <p class="lead">
+        Hey Welcome (name come's). You're allowed to create account for your new author
+    </p>
+    <form name="contactForm" id="contactForm" method="post" action="" autocomplete="off">
+        {% csrf_token %}
+        
+        <fieldset>
+            {% if error %}
+            <div class="alert-box alert-box--error hideit">
+                <p>{{ error }}</p>
+                <i class="fa fa-times alert-box__close" aria-hidden="true"></i>
+            </div>
+            {% endif %}
+            <div class="form-field">
+                {{ form.name }}
+            </div>
+
+            <div class="form-field">
+                {{ form.email }}
+            </div>
+
+
+            <div class="form-field">
+                {{ form.password }}
+            </div>
+            <div class="form-field">
+                {{ form.password_confirm }}
+            </div>
+
+            <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width" value="Register" type="submit">
+
+        </fieldset>
+    </form> <!-- end form -->
+
+    </div>
+    </main>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+        <!-- site content
+        ================================================== -->
+        <div class="s-content content">
+            <main class="row content__page">
+                
+                <section class="column large-full entry format-standard">
+
+                    <div class="media-wrap">
+                        <div>
+                            <img src="{% static 'images/thumbs/contact/contact-1000.jpg' %}" srcset="{% static 'images/thumbs/contact/contact-2000.jpg' %} 2000w, 
+                                      {% static 'images/thumbs/contact/contact-1000.jpg' %} 1000w, 
+                                      {% static 'images/thumbs/contact/contact-500.jpg' %} 500w" sizes="(max-width: 2000px) 100vw, 2000px" alt="">
+                        </div>
+                    </div>
+
+                    <div class="content__page-header">
+                        <h1 class="display-1">
+                        Get In Touch.
+                        </h1>
+                    </div> <!-- end content__page-header -->
+
+                    <p class="lead drop-cap">If you want to contact me let me know it, through the contact form and you can contact us through email and this form and there will be response within 24 hours and If I couldn't an advance <b>Sorry</b> but Most probably I guarentee there will be an response in your provided email.</p>
+                    <div class="row">
+                        <div class="column large-six tab-full">
+                            <h4>Contact Info</h4>
+                            blessedblissfultimes@gmail.com <br>
+                            </p>
+    
+                        </div>
+                    </div>
+
+                    <h3 class="h2">Say Hello</h3>
+                    {% if form %}
+                    <form name="contactForm" id="contactForm" method="post" action="" autocomplete="off">
+                        <fieldset>
+                            {% csrf_token %}
+                            <div class="form-field">
+                                {{ form.name }}
+                            </div>
+    
+                            <div class="form    -field">
+                                {{ form.email }}
+                            </div>
+                            <div class="message form-field">
+                                {{ form.message }}
+                            </div>
+    
+                            <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width" value="Send Message" type="submit">
+
+                        </fieldset>
+                    </form> <!-- end form -->
+                    {% endif %}
+                </section>
+
+            </main>
+
+        </div> <!-- end s-content -->
+
+{% endblock %}

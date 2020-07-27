@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+        <!-- site content
+        ================================================== -->
+        <div class="s-content content">
+            <main class="row content__page">
+                
+                <article class="column large-full entry format-standard">
+
+                    <div class="media-wrap entry__media">
+                        <div class="entry__post-thumb">
+                            <img src="{{ obj.image.url }}" 
+                                    srcset="{{ obj.image.url }} 2000w, 
+                                    {{ obj.image.url }} 1000w, 
+                                            {{ obj.image.url }}  500w" sizes="(max-width: 2000px) 100vw, 2000px" alt="">
+                        </div>
+                    </div>
+
+                <div class="content__page-header entry__header">
+                <!-- Here comes the title  -->
+                <h1 class="display-1 entry__title">{{ obj.title }}</h1>
+                <ul class="entry__header-meta">
+                    <!-- Here comes the author  -->
+
+                    <li class="author">By <a href="#0">{{ obj.author.name }}</a></li>
+                    <li class="date">{{ obj.date }}</li>
+                </ul>
+                </div> <!-- end entry__header -->
+            {% if obj.quote %}
+            {% if obj.quotewriter%}
+            <div class="entry__content">
+                <blockquote>
+                    <p>{{ obj.quote }}
+                    </p>
+                    <cite>{{ obj.quotewriter }}</cite>
+                </blockquote>
+            {% endif %}
+            {% endif %}
+                    <div class="entry__content">
+
+                        <p class="lead drop-cap">
+                            {{ obj.description }}
+                        </p>
+                        <p class="entry__tags">
+                            <span>Tell Us About This Post</span>
+            
+                            <span class="entry__tag-list">
+                                {%if liked %}
+                                    <a href="{% url 'likepost' obj.pk %}"><i class="far fa-thumbs-up active"></i>Like</a>
+                                    {% else %}
+                                    <a href="{% url 'likepost' obj.pk %}"><i class="far fa-thumbs-up"></i>Like</a>
+                                    {% endif%}
+                                    {%if disliked %}
+                                    <a href="{% url 'dislikepost' obj.pk %}"><i class="far fa-thumbs-down "></i>Dislike</a>
+                                    {% else %}
+                                    <a href="{% url 'dislikepost' obj.pk %}"><i class="far fa-thumbs-down active"></i>Dislike</a>
+                                    {% endif%}
+                                </span>
+                                
+                        </p>
+                            
+                    </div> <!-- end entry content -->
+
+                    <div class="entry__pagenav">
+                    </div> <!-- end entry__pagenav -->
+                </article> <!-- end column large-full entry-->
+
+
+                <div class="comments-wrap">
+
+                    <div id="comments" class="column large-12">
+
+                        {% if comments %}
+                        <h3 class="h2">5 Comments</h3>
+        
+                        <!-- START commentlist -->
+                        <ol class="commentlist">
+                            {% for comment in comments %}
+                            <li class="depth-1 comment">
+        
+                                <div class="comment__avatar">
+                                    <img class="avatar" src="{% static 'images/avatars/user-01.jpg' %}" alt="" width="50" height="50">
+                                </div>
+        
+                                <div class="comment__content">
+        
+                                    <div class="comment__info">
+                                        <div class="comment__author">{{ comment.name}}</div>
+        
+                                        <div class="comment__meta">
+                                            <div class="comment__time">{{ comment.date }}</div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="comment__text">
+                                    <p>{{ comment.message }}</p>
+                                    </div>
+        
+                                </div>
+        
+                            </li> <!-- end comment level 1 -->
+                            {% endfor %}
+                            {% else %}
+                            <h3 class="h2">No Comments</h3>
+                            <div style="width: 100%;"></div>
+                            <ol class="commentlist"></ol>
+                            {% endif %}
+                        </ol>
+                        <!-- END commentlist -->
+
+                    </div> <!-- end comments -->
+
+                    <div class="column large-12 comment-respond">
+                        {% if form %}
+                        <!-- START respond -->
+                        <div id="respond">
+            
+                            <h3 class="h2">Add Comment <span>Your email address will not be published</span></h3>
+            
+                            <form name="contactForm" id="contactForm" method="post" action="" autocomplete="off">
+                                {% csrf_token %}
+                                <fieldset>
+                                    {% for field in form%}
+                                    <div class="form-field">
+                                        {{ field }}
+                                    </div>
+                                    {% endfor %}
+                                    <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large full-width" value="Add Comment" type="submit">
+            
+                                </fieldset>
+                            </form> <!-- end form -->
+            
+                        </div>
+                        <!-- END respond-->
+                        {% endif %}
+                    </div> <!-- end comment-respond -->
+            
+                </div> <!-- end comments-wrap -->
+            </main>
+
+        </div> <!-- end s-content -->
+{% endblock %}

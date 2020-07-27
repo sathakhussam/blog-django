@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% if objs %}
+{% if admin %}
+<div class="s-content content">
+    <main class="row content__page">
+        <div class="column large-full entry format-standard">
+            <h1 class="display-1">All The Posts</h1>
+            <div class="row add-bottom">
+                <div class="column large-full">
+                    <div class="table-responsive">
+                        <table>
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Published</th>
+                                    <th>Likes</th>
+                                    <th>Dislikes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for obj in objs %}
+                                <tr>
+                                    <td><a href="{% url 'updatepost' obj.pk %}">{{ obj.title }}</a></td>
+                                    <td>{{ obj.author.name }}</td>
+                                    <td><a href="{% if obj.is_published %}{% url 'disapprovepost' obj.pk %}{% else %}{% url 'approvepost' obj.pk %}{% endif %}">{{ obj.is_published }}</a></td>
+                                    <td>{{ obj.likes }}</td>
+                                    <td>{{ obj.dislikes }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                
+            </div> <!-- end row -->    
+            
+        </div>
+        <div class="column large-full entry format-standard">
+            <div class="row"><a href="{% url 'createpost' %}" class="btn btn--primary btn-wide btn--large full-width">CREATE POST</a></div>
+            <div class="row"></div>
+        </div>
+    </main>
+</div>
+{% else %}
+<div class="s-content content">
+    <main class="row content__page">
+        <div class="column large-full entry format-standard">
+            <h1 class="display-1">All Your Posts</h1>
+            <div class="row add-bottom">
+                <div class="column large-full">
+                    <div class="table-responsive">
+                        <table>
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Published</th>
+                                    <th>Likes</th>
+                                    <th>Dislikes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for obj in objs %}
+                                <tr>
+                                    <td><a href="{% url 'updatepost' obj.pk %}">{{ obj.title }}</a></td>
+                                    <td><a href="{% url 'approvepost' obj.pk %}">{{ obj.is_published }}</a></td>
+                                    <td>{{ obj.likes }}</td>
+                                    <td>{{ obj.dislikes }}</td>
+                                </tr>
+                                    {% endfor %}
+                                </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                
+            </div> <!-- end row -->    
+        </div>
+        
+        <div class="column large-full entry format-standard">
+            <div class="row"><a href="" class="btn btn--primary btn-wide btn--large full-width">CREATE POST</a></div>
+        </div>        
+    </main>
+</div>
+{% endif %}
+{% else %}
+<div class="s-content content">
+    <main class="row content__page">
+        <div class="column large-full entry format-standard">
+            <h1 class="display-1">Sorry there are no posts available</h1>
+        </div>
+    </main>
+</div>
+
+{% endif %}
+{% if forms %}
+<div class="column large-full entry format-standard">
+    <h1 class="display-1">All The Contact Forms</h1>
+    <div class="row add-bottom">
+        <div class="column large-full">
+            <div class="table-responsive">
+                <table>
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for form in forms %}
+                        <tr>
+                            <td><a href="{% url 'eachform' obj.pk %}">{{ form.name }}</a></td>
+                            <td>{{ form.email }}></td>
+                            <td>form.message|truncatechars:10</td>
+                        </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        
+    </div> <!-- end row -->    
+</div>
+{% endif %}
+{% endblock %}
