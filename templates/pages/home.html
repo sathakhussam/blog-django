@@ -26,7 +26,7 @@
             <article class="masonry__brick entry format-standard animate-this">
                     
                 <div class="entry__thumb">
-                    <a href="single-standard.html" class="entry__thumb-link">
+                    <a href="{% url 'blogpost' obj.pk %}" class="entry__thumb-link">
                         <img style="" src="{{ obj.image.url }}" 
                                 srcset="{{ obj.image.url }} 1x, {{ obj.image.url }} 2x" alt="">
                     </a>

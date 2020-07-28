@@ -83,8 +83,8 @@
         </div>
         
         <div class="column large-full entry format-standard">
-            <div class="row"><a href="" class="btn btn--primary btn-wide btn--large full-width">CREATE POST</a></div>
-        </div>        
+            <div class="row"><a href="{% url 'createpost' %}" class="btn btn--primary btn-wide btn--large full-width">CREATE POST</a></div>
+        </div>         
     </main>
 </div>
 {% endif %}
@@ -93,6 +93,9 @@
     <main class="row content__page">
         <div class="column large-full entry format-standard">
             <h1 class="display-1">Sorry there are no posts available</h1>
+            <div class="column large-full entry format-standard">
+                <div class="row"><a href="{% url 'createpost' %}" class="btn btn--primary btn-wide btn--large full-width">CREATE POST</a></div>
+            </div>       
         </div>
     </main>
 </div>
@@ -128,6 +131,10 @@
         </div>
         
     </div> <!-- end row -->    
+</div>
+{% else %}
+<div class="column large-full entry format-standard">
+    <h1 class="display-1">There are no contact forms submitted now</h1>
 </div>
 {% endif %}
 {% endblock %}
