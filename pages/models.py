@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from blessedbb.own import sendemail
 # Create your models here.
 class ContactForm(models.Model):
@@ -17,7 +18,7 @@ class ViewLog(models.Model):
     latitude = models.CharField(max_length=1000, null=True,blank=True)
     longitude = models.CharField(max_length=1000, null=True,blank=True)
     is_unknown = models.BooleanField(default=False)
-
+    date = models.DateTimeField(default=timezone.now)
     def __str__(self):
         if self.is_unknown:
             return f'{self.IP}'
