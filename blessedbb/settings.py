@@ -23,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'g^r29zo%o5qr9yt%hcx&%oe7ut!0h4_e7j9=a_qv)&031^&*=#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-# ALLOWED_HOSTS = ['blessedblissfultimes.ga','www.blessedblissfultimes.ga','52.78.162.134', 'localhost', '127.0.0.1', '[::1]']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['blessedblissfultimes.ga','www.blessedblissfultimes.ga','15.165.76.121', 'localhost', '127.0.0.1', '[::1]']
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'pages',
     'accounts',
-    'geoip2',
+    # 'geoip2',
 ]
 
 MIDDLEWARE = [
@@ -79,23 +79,23 @@ WSGI_APPLICATION = 'blessedbb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'blessedblissfultimes',
-#         'USER': 'uzham_blessed',
-#         'PASSWORD': 'satush12',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blessedbb',
+        'USER': 'uzham_blessedbb',
+        'PASSWORD': 'SatHus16',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -136,7 +136,7 @@ AUTH_USER_MODEL = 'accounts.MyUser'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
