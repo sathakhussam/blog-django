@@ -1,4 +1,3 @@
-from django.contrib.gis.geoip2 import GeoIP2
 from django.shortcuts import render
 from . import forms
 from blog import models
