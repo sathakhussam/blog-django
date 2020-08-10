@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+    <div class="s-content content">
+        <main class="row content__page">
+            <div class="column large-full entry format-standard">
 {% if objs %}
 {% if admin %}
-<div class="s-content content">
-    <main class="row content__page">
-        <div class="column large-full entry format-standard">
             <h1 class="display-1">All The Posts</h1>
             <div class="row add-bottom">
                 <div class="column large-full">
@@ -47,9 +47,6 @@
     </main>
 </div>
 {% else %}
-<div class="s-content content">
-    <main class="row content__page">
-        <div class="column large-full entry format-standard">
             <h1 class="display-1">All Your Posts</h1>
             <div class="row add-bottom">
                 <div class="column large-full">
@@ -84,25 +81,17 @@
         
         <div class="column large-full entry format-standard">
             <div class="row"><a href="{% url 'createpost' %}" class="btn btn--primary btn-wide btn--large full-width">CREATE POST</a></div>
-        </div>         
-    </main>
-</div>
 {% endif %}
 {% else %}
-<div class="s-content content">
-    <main class="row content__page">
-        <div class="column large-full entry format-standard">
+            
             <h1 class="display-1">Sorry there are no posts available</h1>
             <div class="column large-full entry format-standard">
                 <div class="row"><a href="{% url 'createpost' %}" class="btn btn--primary btn-wide btn--large full-width">CREATE POST</a></div>
             </div>       
-        </div>
-    </main>
-</div>
 
 {% endif %}
 {% if forms %}
-<div class="column large-full entry format-standard">
+    <div style="height: 50px;"></div>
     <h1 class="display-1">All The Contact Forms</h1>
     <div class="row add-bottom">
         <div class="column large-full">
@@ -118,9 +107,9 @@
                         <tbody>
                             {% for form in forms %}
                         <tr>
-                            <td><a href="{% url 'eachform' obj.pk %}">{{ form.name }}</a></td>
+                            <td><a href="{% url 'eachform' form.pk %}">{{ form.name }}</a></td>
                             <td>{{ form.email }}></td>
-                            <td>form.message|truncatechars:10</td>
+                            <td>{{ form.message|truncatechars:10 }}</td>
                         </tr>
                             {% endfor %}
                         </tbody>
@@ -133,6 +122,8 @@
     </div> <!-- end row -->    
 </div>
 {% else %}
+<div style="height: 50px;"></div>
+
 <div class="column large-full entry format-standard">
     <h1 class="display-1">There are no contact forms submitted now</h1>
 </div>

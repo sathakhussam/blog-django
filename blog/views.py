@@ -10,7 +10,7 @@ def blog_post(request,blog_id):
     stores_ip(request)
     context = {}
     obj = get_object_or_404(models.BlogPost,id=blog_id) 
-    comments = models.Comment.objects.filter(post=obj ,is_published=False)
+    comments = models.Comment.objects.filter(post=obj ,is_published=True)
     print(comments)
     context['obj'] = obj
     context['comments'] = comments
@@ -37,20 +37,18 @@ def blog_post(request,blog_id):
 
 @login_required
 def create_post(request):
-    stores_ip(request)
     form = forms.PostForm
     if request.method == 'POST':
         form = forms.PostForm(request.POST, request.FILES)
         if form.is_valid():
             print('from valid')
-            form.savepost(request , form) 
-            return sendemail("There's a new post in your website ", f"Hello There, you have a new post in the website with the title {form.cleaned_data['title']} and by {request.user.name} and it havent published yet.")
+            form.savepost(request,form) 
+            sendemail("There's a new post in your website ", f"Hello There, you have a new post in the website with the title {form.cleaned_data['title']} and by {request.user.name} and it havent published yet.")
             return redirect('admin')
             # send an email
     return render(request, 'blog/create_post.html', {'form': form})
 @login_required
 def update_post(request,blog_id):
-    stores_ip(request)
     # if reque
     obj = get_object_or_404(models.BlogPost,id=blog_id) 
     if request.user == obj.author or request.user.is_admin:
@@ -69,7 +67,6 @@ def delete_post(request,blog_id):
 @login_required
 def comments_post(request,blog_id):
     obj = get_object_or_404(models.BlogPost, id=blog_id) 
-
     if request.user == obj.author or request.user.is_admin:
         comments = models.Comment.objects.filter(post=obj)
         return render(request, 'blog/comments.html',{'obj':obj,'comments':comments})

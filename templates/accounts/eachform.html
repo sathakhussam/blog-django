@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="s-content content">
+    <main class="row content__page">
+        <div class="column large-full entry format-standard">
+{% if eachform %}
+            <h1>Name : {{ eachform.name }}</h1>
+            <h3>Email : {{ eachform.email }}</h3>
+            <hr>
+            <p>Message : <br>
+                {{ eachform.message }}
+            </p>
+{% else %}
+            <h1>You're not authorised to view this form</h1>
+{% endif %}
+        <a href="{% url 'admin' %}" class="btn btn--primary btn-wide btn--large full-width">BACK TO ADMIN</a>
+        </div>
+    </main>
+</div>
+{% endblock %}

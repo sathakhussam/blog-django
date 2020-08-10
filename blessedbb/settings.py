@@ -23,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'g^r29zo%o5qr9yt%hcx&%oe7ut!0h4_e7j9=a_qv)&031^&*=#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['blessedblissfultimes.ga','www.blessedblissfultimes.ga','52.78.162.134', 'localhost', '127.0.0.1', '[::1]']
-
+# ALLOWED_HOSTS = ['blessedblissfultimes.ga','www.blessedblissfultimes.ga','52.78.162.134', 'localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'geoip2_extras.middleware.GeoIP2Middleware',
+    # 'geoip2_extras.middleware.GeoIP2Middleware',
 ]
 
 ROOT_URLCONF = 'blessedbb.urls'
@@ -79,23 +79,23 @@ WSGI_APPLICATION = 'blessedbb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blessedblissfultimes',
-        'USER': 'uzham_blessed',
-        'PASSWORD': 'satush12',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'blessedblissfultimes',
+#         'USER': 'uzham_blessed',
+#         'PASSWORD': 'satush12',
+#         'HOST': 'localhost',
+#         'PORT': '',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation
@@ -136,12 +136,12 @@ AUTH_USER_MODEL = 'accounts.MyUser'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIP2')
+# GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIP2')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

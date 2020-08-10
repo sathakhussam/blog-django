@@ -41,7 +41,6 @@ def Mylogin(request):
     return render(request, 'accounts/login.html', {'form':form})
 @login_required
 def Customadmin(request):
-    stores_ip(request)
     context = {}
     if request.user.is_admin:
         context['admin'] = True
@@ -49,14 +48,13 @@ def Customadmin(request):
         context['forms'] = ContactForm.objects.all
     else:
         context['author'] = True
-        context['forms'] = models.BlogPost.objects.filter(author=request.user)
+        context['objs'] = models.BlogPost.objects.filter(author=request.user)
     return render(request, 'accounts/admin.html',context)
 
 @login_required
 def eachform(request, form_id):
-    stores_ip(request)
     context = {}
     if request.user.is_admin:
         form = get_object_or_404(ContactForm, id=form_id)
         context['eachform'] = form
-    return render(request, 'accounts/admin.html',context)
+    return render(request, 'accounts/eachform.html',context)

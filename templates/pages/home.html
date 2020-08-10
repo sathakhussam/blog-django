@@ -51,8 +51,6 @@
                 </div>
             </article>
             {% endfor%}
-            {% else %}
-            <h1>Sorry no articles available</h1>
             {% endif %}
         </div> <!-- end masonry -->
 
@@ -78,3 +76,13 @@
 
 </div> <!-- end s-content -->
 {% endblock %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163490767-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163490767-2');
+    </script>
