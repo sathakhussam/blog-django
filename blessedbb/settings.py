@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blessedbb',
         'USER': 'uzham_blessedbb',
-        'PASSWORD': 'SatHus16',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -148,7 +148,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'blessedblissfultimes@gmail.com'
-EMAIL_HOST_PASSWORD = 'babeyouknowwhatiwillalwaysrememberyouinmydua'
+EMAIL_HOST_PASSWORD = ''
 
 # for security purposes
 # SESSION_COOKIE_SECURE = True
