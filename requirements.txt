@@ -15,7 +15,7 @@ lazy-object-proxy==1.4.3
 maxminddb==2.0.1
 mccabe==0.6.1
 multidict==4.7.6
-Pillow==7.2.0
+Pillow==9.0.1
 psycopg2-binary==2.8.5
 pycryptodome==3.9.8
 pylint==2.5.3
